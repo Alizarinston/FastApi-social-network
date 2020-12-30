@@ -1,0 +1,21 @@
+version: "3.0"
+services:
+  app:
+    build: .
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    environment:
+      DB_USER: postgres
+      DB_HOST: db
+      DB_PASSWORD: postgres
+    ports:
+      - "8000:8000"
+    restart: always
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: social-network
+      POSTGRES_PASSWORD: postgres
